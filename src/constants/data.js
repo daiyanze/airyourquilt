@@ -1,0 +1,51 @@
+export const data = {
+  'daily': {
+    'data': [
+      {
+        'apparentTemperatureHigh': 66.34,
+        'apparentTemperatureHighTime': 1522047600,
+        'apparentTemperatureLow': 49.11,
+        'apparentTemperatureLowTime': 1522094400,
+        'apparentTemperatureMax': 66.34,
+        'apparentTemperatureMaxTime': 1522047600,
+        'apparentTemperatureMin': 47.4,
+        'apparentTemperatureMinTime': 1522011600,
+        'cloudCover': 0.42,
+        'dewPoint': 47.59,
+        'humidity': 0.71,
+        'icon': 'partly-cloudy-day',
+        'moonPhase': 0.31,
+        'ozone': 338.05,
+        'precipIntensity': 0,
+        'precipIntensityMax': 0.0001,
+        'precipIntensityMaxTime': 1521990000,
+        'precipProbability': 0,
+        'pressure': 1020.07,
+        'summary': 'Mostly cloudy throughout the day.',
+        'sunriseTime': 1522010258,
+        'sunsetTime': 1522054691,
+        'temperatureHigh': 66.34,
+        'temperatureHighTime': 1522047600,
+        'temperatureLow': 49.8,
+        'temperatureLowTime': 1522094400,
+        'temperatureMax': 66.34,
+        'temperatureMaxTime': 1522047600,
+        'temperatureMin': 47.4,
+        'temperatureMinTime': 1522011600,
+        'time': 1521990000,
+        'uvIndex': 5,
+        'uvIndexTime': 1522029600,
+        'windBearing': 169,
+        'windGust': 9.37,
+        'windGustTime': 1522054800,
+        'windSpeed': 2.04
+      }
+    ],
+    'icon': 'rain',
+    'summary': 'Light rain on Friday, with temperatures peaking at 68°F on Thursday.'
+  },
+  'latitude': 35.68,
+  'longitude': 139.76,
+  'offset': 9,
+  'timezone': 'Asia/Tokyo'
+}
