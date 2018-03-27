@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import App from './App'
 import VueCalendar from 'vue-flat-calendar'
+import AddToCalendar from 'vue-add-to-calendar'
 import VueGeolocation from 'vue-browser-geolocation'
 import VModal from 'vue-js-modal'
 import axios from 'axios'
@@ -11,7 +12,8 @@ import '../node_modules/vue-flat-calendar/src/static/style.less'
 Vue.config.productionTip = false
 Vue.use(VueCalendar, { locale: 'en', weekStartOn: 6 })
 Vue.use(VueGeolocation)
-Vue.use(VModal)
+Vue.use(VModal, { dialog: true })
+Vue.use(AddToCalendar)
 
 Vue.prototype.$http = axios
 

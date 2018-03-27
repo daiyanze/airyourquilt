@@ -7,9 +7,10 @@ https://darksky.net/
 
 
 ## TODO
-- implement "retrieve data" after changing date
-- menu link for 'What is "AirYourQuilt"' and 'About'
-- disable old date onclick
-- display weather status on calendar
-- add temperature trend chart
-- refactor vue-flat-calendar
+- [ ] implement "retrieve data" after changing date
+- [ ] specific time for "airing the quilt"
+- [ ] menu link for 'What is "AirYourQuilt"' and 'About'
+- [ ] disable old date onclick
+- [ ] display weather status on calendar
+- [ ] add temperature trend chart
+- [ ] refactor vue-flat-calendar

@@ -7,12 +7,29 @@
       <div class="main__status box">
         <DateLocation
           :curDate="curDate"
+          :timezone="timezone"
         />
         <Weather
-          :temperature="25"
-          :humidity="0.2"
+          :averageTemperature="averageTemperature"
+          :temperatureHigh="temperatureHigh"
+          :temperatureLow="temperatureLow"
+          :humidity="humidity"
           :wind="10"
+          :summary="summary"
+          :isWeatherGood="isWeatherGood"
         />
+        <add-to-calendar
+          title="This is your laundry day!"
+          :start="start"
+          :end="end"
+          inline-template
+          >
+          <div>
+            <google-calendar id="google-calendar">
+              Add to Google calendar &#8594;
+            </google-calendar>
+          </div>
+        </add-to-calendar>
       </div>
       <vue-calendar
         @day-changed="handleDayChanged"
@@ -25,7 +42,9 @@ import DateLocation from '../DateLocation'
 import Weather from '../Weather'
 import moment from 'moment'
 
-const api = 'https://api.darksky.net/forecast/af1dd67f02165446b1427f3ca8323d12/'
+const api = 'https://airyourquilt-server.herokuapp.com/weather'
+
+const today = moment().format('MMM Do YYYY')
 
 export default {
   name: 'Main',
@@ -35,8 +54,17 @@ export default {
   },
   data () {
     return {
-      curLocation: '',
-      curDate: moment().format('MMM Do YYYY'),
+      start: new Date(),
+      end: new Date((new Date()).setDate((new Date()).getDate() + 1)),
+      timezone: '',
+      humidity: null,
+      averageTemperature: null,
+      temperatureLow: null,
+      temperatureHigh: null,
+      windSpeed: null,
+      isWeatherGood: true,
+      summary: '',
+      curDate: today,
       coordinates: {
         lat: 35.68,
         lng: 139.76
@@ -48,25 +76,44 @@ export default {
       this.coordinates = coordinates
       console.log(coordinates)
     })
-    this.$http.get(this.dataUrl())
-      .then(res => {
-        console.log(res)
-      })
+    this.getWeatherData()
   },
   methods: {
     handleDayChanged (data) {
       if (this.curDate !== data.date) {
         this.curDate = this.formatDate(data.date)
+        this.start = new Date(this.curDate)
+        this.end = new Date(this.start.setDate(this.start.getDate() + 1))
+        this.getWeatherData(this.curDate)
       }
     },
-    formatDate (dt) {
+    formatDate (dt, format = 'YYYY/MM/DD') {
       return moment(dt, 'YYYY/MM/DD').format('MMM Do YYYY')
     },
-    formatDateToUnix (dt) {
-      return moment(dt, 'YYYY/MM/DD').unix()
+    formatDateToUnix (dt, format = 'YYYY/MM/DD') {
+      return moment(dt, format).unix()
     },
-    dataUrl (dt) {
-      return `${api}${this.coordinates.lat},${this.coordinates.lng},${this.formatDateToUnix(dt)}?exclude=currently,flags,alerts`
+    checkWeather (icon) {
+      return !(icon.includes('rain') ||
+          icon.includes('wind') ||
+          icon.includes('hot'))
+    },
+    getWeatherData (date = today) {
+      this.$http.get(`${api}?latitude=${this.coordinates.lat}&longitude=${this.coordinates.lng}&time=${this.formatDateToUnix(date, 'MMM Do YYYY')}`, {
+        headers: {
+          'Access-Control-Allow-Origin': '*'
+        }
+      })
+        .then(res => {
+          this.timezone = res.data.timezone
+          this.humidity = res.data.humidity
+          this.temperatureLow = res.data.temperatureLow
+          this.temperatureHigh = res.data.temperatureHigh
+          this.windSpeed = res.data.windSpeed
+          this.averageTemperature = res.data.average_temperature
+          this.summary = res.data.summary
+          this.isWeatherGood = this.checkWeather(res.data.icon)
+        })
     }
   }
 }

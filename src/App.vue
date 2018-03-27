@@ -3,6 +3,7 @@
     <Header />
     <Main/>
     <Footer />
+    <v-dialog/>
   </div>
 </template>
 

@@ -8,15 +8,32 @@
     </div>
     <ul class="nav__menu">
       <li>
-        <a href="#">What is "AirYourQuilt"</a>
+        <a href="#" @click.prevent="popWhatModal">What is "AirYourQuilt"</a>
       </li>
       <li>
-        <a href="#">About</a>
+        <a href="#" @click.prevent="popAboutModal">About</a>
       </li>
     </ul>
   </nav>
 </template>
 <script>
+export default {
+  name: 'Header',
+  methods: {
+    popAboutModal () {
+      this.$modal.show('dialog', {
+        title: 'About this website creator',
+        text: 'Find me on github. <a href="https://github.com/daiyanze">https://github.com/daiyanze</a>'
+      })
+    },
+    popWhatModal () {
+      this.$modal.show('dialog', {
+        title: 'What is "AirYourQuilt"?',
+        text: '"AirYourQuilt" is another a small web application to help you find a proper day to do the laundry. It is powered by Vue.js and Flask. Thank you for visiting'
+      })
+    }
+  }
+}
 </script>
 <style scoped>
 .nav {
