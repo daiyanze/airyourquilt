@@ -13,7 +13,7 @@
     "build": "rm -rf ./dist ./docs && node build/build.js && cp -R ./dist ./docs/"
   },
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "moment": "^2.21.0",
     "vue": "^2.5.2",
     "vue-add-to-calendar": "^1.0.4",
