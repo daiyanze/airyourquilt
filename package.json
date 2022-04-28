@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
-    "moment": "^2.21.0",
+    "moment": "^2.29.2",
     "vue": "^2.5.2",
     "vue-add-to-calendar": "^1.0.4",
     "vue-browser-geolocation": "^1.0.1",
